@@ -24,7 +24,7 @@
             "name": "Cartera Gucci",
             "sale": false,
             "price": 212,
-            "picture": "/public/images/corbata.png",
+            "picture": "/public/images/cartera.png",
             "tags": [
                 "work"
             ]
@@ -145,7 +145,7 @@
         }, 
 
         {
-            "name": "MacBook",
+            "name": "MacBook Pro",
             "sale": true,
             "price": 689,
             "picture": "/public/images/macbook.png",
