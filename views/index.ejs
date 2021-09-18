@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+
+</head>
+
+<body>
+  <header>
+    <h1>
+      <%= title %>
+    </h1>
+    <p>Bienvenido a <%= title %>
+    </p>
+  </header>
+
+  <main>
+    <div>
+      <h2>Lista de anuncios</h2>
+
+      <table>
+        <tr>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Venta/Compra
+          <th>Categorías</th>
+          <th>Foto</th>
+        </tr>
+        <% adverts.forEach((advert)=> { %>
+          <tr>
+            <td>
+              <%= advert.name %>
+            </td>
+            <td>
+              <%= advert.price %>
+            </td>
+            <td>
+              <% if(advert.sale==true) { %>
+                Venta
+                <% } else if (advert.sale===false) { %>
+                  Compra
+                  <% } %>
+            </td>
+            <td>
+              <%= advert.tags %>
+            </td>
+            <td>
+              <a href = '#' > Foto <%= advert.name %> </a>
+            </td>
+          </tr>
+         <% }) %>
+    </table>
+  
+    </div>
+  </main>
+                             
+</body>
+
+</html>
