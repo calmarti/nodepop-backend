@@ -1,22 +1,23 @@
 ## API para el servicio de venta de artículos de segunda mano 'Nodepop'
 ---
 
-
 ## Requisitos de software
 
 Se asume la previa instalación de:
 
- 1. Node (10.19.0 o superior).
- 2. MongoDB (1.3.6 o superior)
+ 1. Node 10.19.0 o superior
+ 2. MongoDB 1.3.6 o superior
 
- Las versiones anteriores de ambos paquetes no han sido probadas y no todas podrían ser adecuadas.
+ Nota: en versiones anteriores de estos programas esta app podría no funcionar como se espera.
 
 ## Instalación de dependencias e inicialización de la base de datos
-Tras clonar el repo con: <pre> git clone https://github.com/calmarti/practicaNode-Express-MongoDB.git</pre> deben instalarse las dependencias de Nodepop desde la consola: 
+Tras clonar el repo con: <pre> git clone https://github.com/calmarti/practicaIntroToBackEnd.git</pre> deben instalarse las dependencias de la app desde la consola: 
 ```sh 
 npm install
 ```
-Para poder ejecutar la aplicación es necesario contar además con una base de datos (no vacía) de MongoDB cuyo *schema* sea compatible con el del modelo de anuncios de Nodepop, a saber: 
+Para poder ejecutar la aplicación es necesario incializar la base de datos. Para ello puede usarse cualquier fichero JSON de anuncios (o colección de MongoDB) cuyo *schema* sea compatible con el del modelo de anuncios de Nodepop, a saber: 
+
+## Schema de anuncios de Nodepop
 
 ```js
 
@@ -28,13 +29,16 @@ Para poder ejecutar la aplicación es necesario contar además con una base de d
 
 ```
 
-Para fines de testear la app, la base de datos puede ser inicializada con un fichero de prueba de 20 anuncios (*initAdverts.json*) al ejecutar: 
+Alternativamente, puede usarse un fichero de prueba de 20 anuncios (*advertsSample.json*) ejecutando el script de inicialización con el comando: 
 
 ```sh 
 npm run initdb
 ```
 ## Ejecución
-Para arrancar el servidor web de Node, el servidor de MongoDB y ejecutar la aplicación de Express:
+
+Se asume que el servidor de MongoDB ha sido arrancado.
+
+Para arrancar el servidor web de Node, conectarlo al servidor de MongoDB (a través de mongoose) e iniciar la aplicación de Express:
 
 ```sh
 npm start
@@ -62,17 +66,15 @@ http://127.0.0.1:3000/apiv1/adverts
 
 Están disponibles todos los atributos de un anuncio estándar de Nodepop:
 
-Name: nombre del producto
+**Name**: nombre del producto
 
-Price: precio del producto
+**Price**: precio del producto
 
-Sale = true si es un anuncio de venta
+**Sale** = true si es un anuncio de venta / false si es un anuncio de compra
 
-Sale = false si es un anuncio de compra
+**Picture**: Cadena con la ruta de la foto del producto
 
-Picture: Cadena string con la ruta de la foto principal del producto
-
-Tags: array de tags o categorías a las que perntenece el producto
+**Tags**: array de tags o categorías a las que pertenece el producto
 
 ### Búsquedas con parámetros de tipo *query string*
 
@@ -90,36 +92,42 @@ Ejemplo:
 
 Una petición GET a 
 ```sh
-http://127.0.0.1:3000/apiv1/adverts/?select=atributo_1&atributo_2
+http://127.0.0.1:3000/apiv1/adverts/?select=name&select=tags
 ```
 
-devuelve la lista total de anuncios restringiendo la información únicamente a los atributos 1 y 2.
+devuelve la lista total de anuncios restringiendo la información únicamente a los campos `name` y `tags`
 
 **Para paginar los resultados** de las búsquedas están disponibles los siguientes comandos:
 
-- `skip`: ignora los primeros *n* anuncios ('skip=n')
+- `skip=n`: ignora los primeros *n* anuncios 
 
-- `limit`: muestra solo una 'página' de *n* anuncios ('limit=n')
+- `limit=n`: muestra solo una 'página' de *n* anuncios 
 
-- `sort`: ordena el resultado de la búsqueda en forma ascendente
+Además, para ordenar los resultados por un atributo de interés y de forma ascendente: 
 
-Ejemplo: 
+- `sort=atributo` 
+
+Nota: para ordenar de forma descendente colocar `'-'` antes del atributo
+
+Ejemplo de paginación ordenada: 
 
 ```sh
-http://127.0.0.1:3000/apiv1/adverts/?skip=2&limit=10&sort=price
+http://127.0.0.1:3000/apiv1/adverts/?skip=10&limit=10&sort=price
 ```
-Devuelve una lista ordenada (en forma ascendente) de 10 anuncios contando a partir del tercer anuncio de la lista (es decir, ignora los dos primeros anuncios)
+Devuelve una lista ordenada de diez anuncios contando a partir del undécimo anuncio de la lista (ignora los diez primeros anuncios)
+
+Esta última petición permite, por ejemplo, paginar los resultados de 10 en 10, basta con sumar 10 al valor de skip para cada nueva página.   
 
 **Para búsquedas por rango de precio** están disponibles tres casos:
-- Para un rango de precio mínimo y máximo separar ambos valores con el caracter '-': 
+- Para un rango cerrado separar el valor mínimo y el máximo con el caracter `'-' `: 
  ```sh
  http://127.0.0.1:3000/apiv1/adverts/?price=min-max
  ```
--Para precios superiores a un mínimo: 
+- Para precios superiores a un mínimo: 
  ```sh
  http://127.0.0.1:3000/apiv1/adverts/?price=min-
  ```
--Para precios inferiores a un máximo:
+- Para precios inferiores a un máximo:
 
  ```sh
  http://127.0.0.1:3000/apiv1/adverts/?price=-max
@@ -127,17 +135,20 @@ Devuelve una lista ordenada (en forma ascendente) de 10 anuncios contando a part
 
 **Para busquedas por nombre del artículo**
 
-- Introducir el nombre del artículo de interés como valor en el atributo *name*
+- Introducir el nombre del artículo de interés como valor del atributo *name*
 
-**Para búsquedas por inicial o letras iniciales del artículo**
+**Para búsquedas por inicial o letras iniciales del nombre del artículo**
 
 - Introducir la(s) primera(s) letra(s) del artículo:
 
 Ejemplo:
 ```sh
-http://127.0.0.1:3000/apiv1/adverts/?name=?ma
+http://127.0.0.1:3000/apiv1/adverts/?name=ma
 ```
 devuelve una lista de anuncios que contiene artículos tales como macbooks, maletines, mascarillas, etc.
+
+
+Nota: las búsquedas por nombre son *case-insensitive*
 
 ---
 ### Recurso para crear un documento
@@ -148,20 +159,26 @@ Para crear un nuevo anuncio debe hacerse una petición POST a:
 http://127.0.0.1:3000/apiv1/adverts/new
 ```
 
-El body de la petición puede contener cualquiera de los atributos disponibles: `name, price, sale, picture, tags`, siempre que sus valores correspondan con sus *types* (definidos en el *schema* de arriba)
+El body de la petición debe contener valores para los atributos:
 
-El atributo `price` debe ser mayor o igual a 1 unidad monetaria
+ `name, price, sale, picture` , `tags`
+ 
+  y sus *types* deben coincidir con los definidos en el *schema* de la colección (ver arriba)
 
-El atributo `sale` solo admite dos valores: `true` o `false`
+Además, 
+
+El atributo `price` debe ser mayor o igual a 1 
+
+El atributo `sale` solo puede contener: `true` o `false`
 
 ---
 
-### Recurso para obtener la lista de tags (etiquetas) existentes
+### Recurso para obtener la lista de tags existentes
 Una petición GET a: 
 
 ```sh
 http://127.0.0.1:3000/apiv1/adverts/tags
 ```
-devuelve un array con la lista de los tags (no repetidos) existentes en la base de datos
+devuelve un array con la lista de los tags (no repetidos) existentes 
 
 

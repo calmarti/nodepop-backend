@@ -193,18 +193,7 @@
             "tags": [
                 "work", "lifestyle"
                    ]               
-        },
-
-        {
-            "name": "Mochila de cuero vegano",
-            "sale": false,
-            "price": 55,
-            "picture": "/public/images/mochila_vegana.png",
-            "tags": [
-                "lifestyle"
-                   ]               
         }
-    
-    
+
     ]
 }

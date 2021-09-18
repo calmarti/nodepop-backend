@@ -59,12 +59,8 @@ app.use(function (err, req, res, next) {
 
 module.exports = app;
 
-
-//TODO: primero que nada borrar el repo subido (tiene una carpeta de más) y arreglar esto!, no olvidar luego poner la URL definitiva en el README.md
-
 //TODO: Al acabar la revisión de código, no tocarlo más y probar de nuevo el recurso NEW!! (y los otros dos recursos) de todas las formas habidas y por haber
 
-//TODO: Revisar leyendo 'desde afuera' el README.md, cazar gazapos y pulirlo
 
 //TODO: Hacer la documentación con io.docs
 
