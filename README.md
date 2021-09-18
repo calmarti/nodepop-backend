@@ -29,7 +29,7 @@ Para poder ejecutar la aplicación es necesario inicializar la base de datos. Pa
 
 ```
 
-Alternativamente, puede inicialiarse la base de datos con una muestra de 20 anuncios (*advertsSample.json*) ejecutando el script de inicialización con el comando: 
+Alternativamente, puede inicializarse la base de datos con una muestra de 20 anuncios (*advertsSample.json*) ejecutando el script de inicialización con el comando: 
 
 ```sh 
 npm run initdb
@@ -70,7 +70,7 @@ Están disponibles todos los atributos de un anuncio estándar de Nodepop:
 
 **Price**: precio del producto
 
-**Sale** = true si es un anuncio de venta / false si es un anuncio de compra
+**Sale** = `true` si es un anuncio de venta / `false` si es un anuncio de compra
 
 **Picture**: Cadena con la ruta de la foto del producto
 
@@ -116,7 +116,7 @@ http://127.0.0.1:3000/apiv1/adverts/?skip=10&limit=10&sort=price
 ```
 Devuelve una lista ordenada de diez anuncios contando a partir del undécimo anuncio de la lista (ignora los diez primeros anuncios)
 
-Esta última petición permite, por ejemplo, paginar los resultados de 10 en 10, basta con sumar 10 al valor de skip para cada nueva página.   
+Esta última petición permite, por ejemplo, paginar los resultados de 10 en 10 (sumar 10 al valor de skip para cada nueva página)   
 
 **Para búsquedas por rango de precio** están disponibles tres casos:
 - Para un rango cerrado separar el valor mínimo y el máximo con el caracter `'-' `: 
