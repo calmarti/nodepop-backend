@@ -23,9 +23,9 @@ Para poder ejecutar la aplicación es necesario inicializar la base de datos. Pa
 
     name: {type: String, required: true}, 
     sale: {type: Boolean, required: true},
-    price: {type: Number, required:true, min: 1},
+    price: {type: Number, required: true, min: 1},  
     picture: {type: String},
-    tags: {type: [String], required:true} 
+    tags: {type: [String]}   
 
 ```
 Nota: Si se inicializa con un fichero propio los valores de *picture* deben todos comenzar por: `/images`,  carpeta del directorio `/public` donde deben guardarse los ficheros de imágenes

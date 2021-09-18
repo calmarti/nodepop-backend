@@ -8,8 +8,9 @@ const { body, validationResult } = require('express-validator');
 //segundo endpoint: creación de un documento nuevo
 
 router.post('/',
-    body('price').isNumeric({ no_symbols: true }),  //validación de precios: número no negativo
-    body('sale').isBoolean(),                       //validación de variable 'sale' como booleana
+    body('name'),                             
+    body('price').isNumeric({ no_symbols: true }),  //validación del precio: número no negativo
+    body('sale').isBoolean(),                       //validación de 'sale': valor booleano
 
     async function (req, res, next) {
         try {
@@ -29,7 +30,7 @@ router.post('/',
             res.status(201).json({ result: newAdvertSaved });
 
         } catch (err) {
-            err.status = 400;   //error de validación por dejar el campo vacío (propiedad 'require:true' en el schema)
+            //err.status = 400;   //error de validación por dejar el campo 'name' vacío (propiedad 'require:true' en el schema)
             next(err);
         }
 
