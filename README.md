@@ -15,9 +15,9 @@ Tras clonar el repo con: <pre> git clone https://github.com/calmarti/practicaInt
 ```sh 
 npm install
 ```
-Para poder ejecutar la aplicación es necesario incializar la base de datos. Para ello puede usarse cualquier fichero JSON de anuncios (o colección de MongoDB) cuyo *schema* sea compatible con el del modelo de anuncios de Nodepop, a saber: 
+Para poder ejecutar la aplicación es necesario inicializar la base de datos. Para ello puede usarse cualquier fichero JSON de anuncios (o colección de MongoDB) cuyo *schema* sea compatible con el modelo de anuncios de Nodepop:
 
-## Schema de anuncios de Nodepop
+## Schema
 
 ```js
 
@@ -30,7 +30,7 @@ Para poder ejecutar la aplicación es necesario incializar la base de datos. Par
 ```
 Nota: Si se inicializa con un fichero propio los valores de *picture* deben todos comenzar por: `/images`,  carpeta del directorio `/public` donde deben guardarse los ficheros de imágenes
 
-Alternativamente, puede usarse un fichero de prueba de 20 anuncios (*advertsSample.json*) ejecutando el script de inicialización con el comando: 
+Alternativamente, puede inicializarse la base de datos con una muestra de 20 anuncios (*advertsSample.json*) ejecutando el script de inicialización con el comando: 
 
 ```sh 
 npm run initdb
@@ -71,7 +71,7 @@ Están disponibles todos los atributos de un anuncio estándar de Nodepop:
 
 **Price**: precio del producto
 
-**Sale** = true si es un anuncio de venta / false si es un anuncio de compra
+**Sale** = `true` si es un anuncio de venta / `false` si es un anuncio de compra
 
 **Picture**: Cadena con la ruta de la foto del producto
 
@@ -117,7 +117,7 @@ http://127.0.0.1:3000/apiv1/adverts/?skip=10&limit=10&sort=price
 ```
 Devuelve una lista ordenada de diez anuncios contando a partir del undécimo anuncio de la lista (ignora los diez primeros anuncios)
 
-Esta última petición permite, por ejemplo, paginar los resultados de 10 en 10, basta con sumar 10 al valor de skip para cada nueva página.   
+Esta última petición permite, por ejemplo, paginar los resultados de 10 en 10 (sumar 10 al valor de skip para cada nueva página)   
 
 **Para búsquedas por rango de precio** están disponibles tres casos:
 - Para un rango cerrado separar el valor mínimo y el máximo con el caracter `'-' `: 
@@ -162,9 +162,9 @@ http://127.0.0.1:3000/apiv1/adverts/new
 
 El body de la petición debe contener valores para los atributos:
 
- `name, price, sale, picture` , `tags`
+ `name, price, sale, picture` y `tags`
  
-  y sus *types* deben coincidir con los definidos en el *schema* de la colección (ver arriba)
+  y sus *types* deben coincidir con los definidos en el *schema* (ver arriba)
 
 Además, 
 
