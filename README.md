@@ -15,9 +15,9 @@ Tras clonar el repo con: <pre> git clone https://github.com/calmarti/practicaInt
 ```sh 
 npm install
 ```
-Para poder ejecutar la aplicación es necesario incializar la base de datos. Para ello puede usarse cualquier fichero JSON de anuncios (o colección de MongoDB) cuyo *schema* sea compatible con el del modelo de anuncios de Nodepop, a saber: 
+Para poder ejecutar la aplicación es necesario inicializar la base de datos. Para ello puede usarse cualquier fichero JSON de anuncios (o colección de MongoDB) cuyo *schema* sea compatible con el modelo de anuncios de Nodepop:
 
-## Schema de anuncios de Nodepop
+## Schema
 
 ```js
 
@@ -29,7 +29,7 @@ Para poder ejecutar la aplicación es necesario incializar la base de datos. Par
 
 ```
 
-Alternativamente, puede usarse un fichero de prueba de 20 anuncios (*advertsSample.json*) ejecutando el script de inicialización con el comando: 
+Alternativamente, puede inicialiarse la base de datos con una muestra de 20 anuncios (*advertsSample.json*) ejecutando el script de inicialización con el comando: 
 
 ```sh 
 npm run initdb
@@ -161,9 +161,9 @@ http://127.0.0.1:3000/apiv1/adverts/new
 
 El body de la petición debe contener valores para los atributos:
 
- `name, price, sale, picture` , `tags`
+ `name, price, sale, picture` y `tags`
  
-  y sus *types* deben coincidir con los definidos en el *schema* de la colección (ver arriba)
+  y sus *types* deben coincidir con los definidos en el *schema* (ver arriba)
 
 Además, 
 
