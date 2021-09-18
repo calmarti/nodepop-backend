@@ -28,6 +28,7 @@ Para poder ejecutar la aplicación es necesario incializar la base de datos. Par
     tags: {type: [String], required:true} 
 
 ```
+Nota: Si se inicializa con un fichero propio los valores de *picture* deben todos comenzar por: `/images`,  carpeta del directorio `/public` donde deben guardarse los ficheros de imágenes
 
 Alternativamente, puede usarse un fichero de prueba de 20 anuncios (*advertsSample.json*) ejecutando el script de inicialización con el comando: 
 
