@@ -13,7 +13,6 @@
 
         "undef": 1,
         "unused": 1,
-
         "semi": ["error", "always"],
         "quotes": ["warn", "single"]
     }
