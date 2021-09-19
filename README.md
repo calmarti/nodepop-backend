@@ -15,7 +15,7 @@ Tras clonar el repo con: <pre> git clone https://github.com/calmarti/practicaInt
 ```sh 
 npm install
 ```
-Para poder ejecutar la aplicación es necesario inicializar la base de datos. Para ello puede usarse cualquier fichero JSON de anuncios (o colección de MongoDB) cuyo *schema* sea compatible con el modelo de anuncios de Nodepop:
+Para poder ejecutar la aplicación es necesario inicializar la base de datos. Para ello puede usarse cualquier fichero JSON de anuncios cuyo *schema* sea compatible con el modelo de anuncios de Nodepop:
 
 ## Schema
 
@@ -28,7 +28,13 @@ Para poder ejecutar la aplicación es necesario inicializar la base de datos. Pa
     tags: {type: [String]}   
 
 ```
-Nota: Si se inicializa con un fichero propio los valores de *picture* deben todos comenzar por: `/images`,  carpeta del directorio `/public` donde deben guardarse los ficheros de imágenes
+Este JSON debe importarse en el fichero de inicialización `initDB.js`:
+
+```js
+const initialData = require('./nombreFicheroDeInicializacion.json');
+```
+
+Nota: Los valores de *picture* deben todos comenzar por: `/images/`,  carpeta del subdirectorio `/public` donde deben guardarse los ficheros de imágenes
 
 Alternativamente, puede inicializarse la base de datos con una muestra de 20 anuncios (*advertsSample.json*) ejecutando el script de inicialización con el comando: 
 
@@ -55,9 +61,9 @@ npm run dev
 ## Como usar la API de  Nodepop
 
 ---
-### Recurso raiz 
+### Recurso principal
 
-Una petición GET al recurso raiz de la API devuelve la lista total de anuncios de Nodepop (sin filtros)
+Una petición GET al recurso principal de la API devuelve la lista total de anuncios de Nodepop (sin filtros)
 
 ```sh
 http://127.0.0.1:3000/apiv1/adverts
@@ -152,7 +158,7 @@ devuelve una lista de anuncios que contiene artículos tales como macbooks, male
 Nota: las búsquedas por nombre son *case-insensitive*
 
 ---
-### Recurso para crear un documento
+### Operación de la API para crear un documento
 
 Para crear un nuevo anuncio debe hacerse una petición POST a:
 
@@ -174,7 +180,8 @@ El atributo `sale` solo puede contener: `true` o `false`
 
 ---
 
-### Recurso para obtener la lista de tags existentes
+### Operación de la API para obtener la lista de tags existentes
+
 Una petición GET a: 
 
 ```sh
