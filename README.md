@@ -63,9 +63,9 @@ npm run dev
 ## Como usar la API de  Nodepop
 
 ---
-### Recurso principal
+### Operaciones de búsqueda con o sin filtros
 
-Una petición GET al recurso principal de la API devuelve la lista total de anuncios de Nodepop (sin filtros)
+Una petición GET a la ruta raiz de la API devuelve la lista total de anuncios de Nodepop (sin filtros)
 
 ```sh
 http://127.0.0.1:3000/apiv1/adverts
