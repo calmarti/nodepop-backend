@@ -36,7 +36,9 @@ const initialData = require('./nombreFicheroDeInicializacion.json');
 
 Nota: Los valores de *picture* deben todos comenzar por: `/images/`,  carpeta del subdirectorio `/public` donde deben guardarse los ficheros de imágenes
 
-Alternativamente, puede inicializarse la base de datos con una muestra de 20 anuncios (*advertsSample.json*) ejecutando el script de inicialización con el comando: 
+Si no se dispone de este fichero, puede inicializarse la base de datos con una muestra de 20 anuncios (*advertsSample.json*) que ya se encuentra en la raiz del directorio de este proyecto.
+
+En cualquier caso, la inicialización se realiza ejecutando el script de inicialización: 
 
 ```sh 
 npm run initdb
