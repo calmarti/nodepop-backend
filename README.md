@@ -1,4 +1,4 @@
-## API para el servicio de venta de artículos de segunda mano 'Nodepop'
+## API para el servicio de venta de artículos de segunda mano 'chollopop'
 ---
 
 ## Requisitos de software
@@ -60,12 +60,12 @@ npm run dev
 
 ---
 
-## Como usar la API de  Nodepop
+## Como usar la API
 
 ---
 ### Operación de búsqueda sin filtros
 
-Una petición GET a la ruta raiz de la API devuelve la lista total de anuncios de Nodepop
+Una petición GET a la ruta raiz de la API devuelve la lista total de anuncios
 
 ```sh
 http://127.0.0.1:3000/apiv1/adverts
@@ -73,7 +73,7 @@ http://127.0.0.1:3000/apiv1/adverts
 
 ### Atributos
 
-Están disponibles todos los atributos de un anuncio estándar de Nodepop:
+Están disponibles todos los atributos de un anuncio estándar:
 
 **Name**: nombre del producto
 
